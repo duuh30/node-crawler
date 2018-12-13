@@ -9,10 +9,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-// CONNECT DATABASE MONGOOSE ROBO3T
-mongoose.connect('mongodb://localhost/noderestapi',{useNewUrlParser: true});
-// mongoose.promise = global.Promise;
-// module.exports = mongoose;
+//LOADING DATABASE;
+const database = require('./config/database');
 
 //LOADING MODELS
 
