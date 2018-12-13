@@ -61,26 +61,18 @@ exports.get = (req, res, next) => {
                     const links = $(el).attr('href');
 
 
-                        promotions.push(
-                            {
-                                title: items,
-                                url: baseUrl + links
-                            }
-                        );
+                    promotions.push(
+                        {
+                            title: items,
+                            url: baseUrl + links
+                        }
+                    );
 
-                    addPromotion = {
+                   const addPromotion = {
                         title: items,
                         url: baseUrl + links
                     };
-                    // for (const promotion of promotions) {
-                    //     (async () => {
-                    //         const browser = await pup.launch();
-                    //         const page = await b.newPage();
-                    //         await page.goto(promotion.url, { waitUntil: 'networkidle2' , timeout: 8000});
-                    //         await page.pdf({ path: './pdfs/' + promotion.title + '.pdf', format: 'A4' });
-                    //         await browser.close();
-                    //     })();
-                    // }
+
                     const ModelPromotion = new Promotion(addPromotion);
                     ModelPromotion.save();
                 });
