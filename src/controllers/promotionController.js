@@ -2,7 +2,7 @@
 
 const savePromotion = require('../services/promotionService');
 exports.post = async (req, res, next) => {
-    next();
+    
 };
 
 exports.put = (req, res, next) => {
