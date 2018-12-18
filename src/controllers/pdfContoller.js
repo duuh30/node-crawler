@@ -8,7 +8,7 @@ exports.post = async (req, res, next) => {
         
     try{
         const promotions = await pdfService.generatePdf();
-        return res.status(200).send({promotions: promotions});
+        return res.status(200).send({lenght: promotions.length,promotions: promotions});
     }catch(err){
         console.log(err);
     }
