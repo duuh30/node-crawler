@@ -1,11 +1,11 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const promotionController = require('../controllers/promotionController');
+const controller = require('../controllers/promotionController');
 
-router.post('/promocao', promotionController.post);
-router.get('/promocao', promotionController.get);
-router.put('/promocao/:id', promotionController.put);
-router.delete('/promocao/:id', promotionController.delete);
+router.post('/', controller.post);
+router.get('/', controller.get);
+router.put('/:id', controller.put);
+router.delete('/:id', controller.delete);
 
 module.exports = router;

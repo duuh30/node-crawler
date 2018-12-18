@@ -1,15 +1,15 @@
 'use strict';
-const express = require('express');
 
-const router = express.Router();
+const promotionRoutes = require('./promotion');
+const pdfController = require('./pdf');
 
-router.get('/', (req,res,next) => {
-    res.status(200).send({
-        data: [{
-            application: "My first application express node js",
-            version: "0.0.1"
-        }]
-    });
-});
+module.exports = function (app) {
 
-module.exports = router;
+   app.use('/promocao', promotionRoutes);
+   app.use('/pdf', pdfController);
+
+   app.get('/', (req, res) => {
+       res.status(200).json({"message": 'My first application express node js'});
+   });
+
+};

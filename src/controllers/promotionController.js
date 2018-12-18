@@ -6,25 +6,7 @@ const Promotion = mongoose.model('Promotion');
 var rp = require('request-promise');
 const pup = require('puppeteer');
 exports.post = async (req, res, next) => {
-    const promotion = new Promotion(req.body);
-    try {
-        if (await promotion.save()) {
-            res.status(201).send({
-                data: [{
-                    message: "Promoção cadastrada com sucesso",
-                    status_error: false
-                }]
-            });
-        }
-    } catch (err) {
-        res.status(400).send({
-            data: [{
-                message: "Não foi possível cadastrar essa promoção",
-                error: err.message,
-                status_error: true
-            }]
-        });
-    }
+    next();
 };
 
 exports.put = (req, res, next) => {
@@ -60,7 +42,6 @@ exports.get = (req, res, next) => {
                     const items = $(el).text().replace(/[`~!@#%�çÇ^&ã*()_|+\-=÷¿?;:'"<>\{\}\\\\/]/gi, '');
                     const links = $(el).attr('href');
 
-
                     promotions.push(
                         {
                             title: items,
@@ -68,25 +49,31 @@ exports.get = (req, res, next) => {
                         }
                     );
 
-                   const addPromotion = {
+
+
+                    const addPromotion = {
                         title: items,
                         url: baseUrl + links
                     };
 
                     const ModelPromotion = new Promotion(addPromotion);
                     ModelPromotion.save();
-                });
-                res.status(201).send({
-                    data: "Promoções cadastradas com sucesso"
+
                 });
             })
             .catch(function (err) {
                 console.log(err);
             });
 
+            res.status(201).send({
+                data: "Promoções cadastradas com sucesso"
+            });
+
     } catch (err) {
         console.log(err);
     }
+
+    next();
 };
 
 

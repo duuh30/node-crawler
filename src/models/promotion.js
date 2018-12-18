@@ -20,6 +20,10 @@ const Promotion = new Schema({
     picture: {
         type: String,
     },
+    pdf: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('Promotion', Promotion);

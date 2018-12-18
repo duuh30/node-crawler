@@ -18,13 +18,8 @@ const database = require('./config/database');
 const Promotion = require('./models/promotion');
 
 //LOADING ROUTES
-const index = require('./routes/index');
-const promotion = require('./routes/promotion');
+require('./routes')(app);
 
-
-
-app.use('/', index);
-app.use('/', promotion);
 
 module.exports = app;
 
