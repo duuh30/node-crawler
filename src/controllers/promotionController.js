@@ -2,7 +2,7 @@
 
 const savePromotion = require('../services/promotionService');
 exports.post = async (req, res, next) => {
-    
+
 };
 
 exports.put = (req, res, next) => {
@@ -23,10 +23,10 @@ exports.delete = (req, res, next) => {
 };
 
 exports.get = async (req, res, next) => {
-    try{
+    try {
         const promotions = await savePromotion.save();
         return res.status(201).send(promotions);
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 };
