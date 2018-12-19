@@ -12,15 +12,13 @@ exports.save = async (req,res) => {
             headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36' }
         };
 
-        rp(options)
-            .then((body) => {
-                const $ = cheerio.load(body);
+        const body = await rp.get(options);
+        const $ = cheerio.load(body);
                 const baseUrl = "www.hardmob.com.br/";
                 const promotions = [];
                 $('.threadtitle a').each(async(i, el) => {
                     const items = $(el).text().replace(/[`~!@#%�çÇ^&ã*()_|+\-=÷¿?;:'"<>\{\}\\\\/]/gi, '');
                     const links = $(el).attr('href');
-
                     promotions.push(
                         {
                             title: items,
@@ -39,11 +37,6 @@ exports.save = async (req,res) => {
                      await ModelPromotion.save();
 
                 });
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
-
             const json = [{
                 data: {
                     message: "Promoções cadastradas com sucesso",

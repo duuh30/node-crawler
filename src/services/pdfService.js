@@ -6,13 +6,15 @@ exports.generatePdf = async (req, res) => {
     const browser = await puppeteer.launch({});
     await promotions.forEach(async (element) => {
         const page = await browser.newPage();
-        await page.goto('https://'+element.url, { "waitUntil": 'networkidle2' }).catch(function () {
-            console.log('Error ao carregar a pagina');
-        });
-        await page.pdf({ path: './pdfs/'+element.title+".pdf", format: 'A4' });
-        browser.close();
-    });
+        await page.goto('https://' + element.url, { "waitUntil": 'load' });
+        await page.pdf({ path: './pdfs/' + element.title + ".pdf", format: 'A4' });
 
+        const attPromotion = await Promotion.findByIdAndUpdate(element._id, {
+            $set: {
+                pdf: true,
+            }
+        });
+    });
 
     const json = [
         data = [{
