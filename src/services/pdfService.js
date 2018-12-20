@@ -9,7 +9,6 @@ exports.generatePdf = async (req, res) => {
         const page = await browser.newPage();
         await page.goto('https://' + element.url, { "waitUntil": 'load' });
         await page.pdf({ path: './pdfs/' + element.title + ".pdf", format: 'A4' });
-
         const attPromotion = await Promotion.findByIdAndUpdate(element._id, {
             $set: {
                 pdf: true,
