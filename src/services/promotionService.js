@@ -1,9 +1,7 @@
-const request = require('request');
 const cheerio = require('cheerio');
 const mongoose = require('mongoose');
-const Promotion = mongoose.model('Promotion');
 var rp = require('request-promise');
-const pup = require('puppeteer');
+const Promotion = mongoose.model('Promotion');
 
 exports.save = async (req, res) => {
     try {

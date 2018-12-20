@@ -1,7 +1,7 @@
 'use strict';
-
 const savePromotion = require('../services/promotionService');
 const storePromotion = require('../services/promotionService');
+
 exports.post = async (req, res, next) => {
     try{
         const promotion = await storePromotion.store(req.body);

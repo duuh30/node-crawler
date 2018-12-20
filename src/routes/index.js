@@ -1,5 +1,4 @@
 'use strict';
-
 const promotionRoutes = require('./promotion');
 const pdfController = require('./pdf');
 
