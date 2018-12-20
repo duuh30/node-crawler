@@ -51,6 +51,20 @@ exports.save = async (req, res) => {
     }
 }
 
-
-
+exports.store = async (data) => {
+    const ModelPromotion = new Promotion(data);
+    try {
+        if (await ModelPromotion.save()) {
+            const json = {
+                data: [{
+                    message: "Promoção cadastrada com sucesso!",
+                    status_error: false
+                }]
+            }
+            return json;
+        }
+    } catch (err) {
+        return err;
+    }
+}
 
