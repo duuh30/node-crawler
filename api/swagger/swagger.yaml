@@ -1,0 +1,99 @@
+swagger: "2.0"
+info:
+  description: "Uma simples documentação da api para estudos."
+  version: "1.0.0"
+  title: "Documentação API"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "promocao"
+  description: "Acesso as operações de promocao"
+- name: "pdf"
+  description: "Acesso as operações de pdf"
+schemes:
+- "https"
+- "http"
+paths:
+  /promocao:
+    post:
+      tags:
+        - "promocao"
+      summary: "Adicionar uma nova promoção"
+      description: "Operação para adicionar promocação"
+      operationId: "addPromotion"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "title"
+        in: "formData"
+        type: "string"
+        description: "Para cadastrar uma promoção é necessário informar o title."
+        required: true
+      - name: "url"
+        in: "formData"
+        type: "string"
+        description: "Para cadastrar uma promoção é necessário informar a url da promoção."
+        required: true
+      responses:
+        201:
+          description: "Promoção cadastrada com sucesso!"
+    get:
+      tags:
+      - "promocao"
+      summary: "Crawler"
+      description: "Pegar todas as informações sobre promoções do hardmob"
+      operationId: "getPromotions"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        201:
+          description: "Promoções cadastradas com sucesso"
+  /pdf:
+    post:
+      tags:
+      - "pdf"
+      summary: "Pegar todas as promoções que não geraram pdf"
+      description: "Gerar pdf das promoções"
+      operationId: "addPdfPromotion"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Pdfs gerados com sucesso"
+          schema:
+            $ref: "#/definitions/Promotion"
+definitions:
+  Promotion:
+    type: "object"
+    required:
+    - "title"
+    - "url"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      price:
+        type: "number"
+      url:
+        type: "string"
+      picture:
+        type: "string"
+      pdf:
+        type: boolean
+        default: false
+    xml:
+      name: "Promotion"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
