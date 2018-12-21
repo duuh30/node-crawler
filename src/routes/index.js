@@ -8,7 +8,7 @@ module.exports = function (app) {
    app.use('/pdf', pdfController);
 
    app.get('/', (req, res) => {
-       res.status(200).json({"message": 'My first application express node js'});
+       res.status(200).json({"message": 'My first application node js'});
    });
 
 };

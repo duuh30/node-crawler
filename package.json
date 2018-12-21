@@ -18,6 +18,7 @@
     "googleapis": "^36.0.0",
     "http": "0.0.0",
     "mongoose": "^5.3.15",
+    "nodemon": "^1.18.9",
     "puppeteer": "^1.11.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
